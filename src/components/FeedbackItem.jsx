@@ -1,7 +1,7 @@
 import Card from "./shared/Card"
 import PropTypes from 'prop-types'
 import {FaTimes} from 'react-icons/fa'
-function FeedbackItem({item,handledelete}) {
+function FeedbackItem({item,handleDelete}) {
     // const [rating,setRating] = useState(7)
     // const[text,setText] = useState('The comment i want to show .')
     // const handleclick = () =>{
@@ -15,7 +15,7 @@ function FeedbackItem({item,handledelete}) {
     return (
     <Card >
         <div className="num-display">{item.rating}</div>
-        <button onClick={()=>(handledelete(item.id))} className="close">
+        <button onClick={()=>(handleDelete(item.id))} className="close">
           <FaTimes color="Purple"/>
         </button>
         <div className="text-display">{item.text}</div>

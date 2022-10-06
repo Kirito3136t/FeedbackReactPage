@@ -2,7 +2,7 @@ import FeedbackItem from "./FeedbackItem"
 import PropTypes from 'prop-types'
 
 function Feedbacklist({feedback,handledelete}) {
-    console.log(feedback)
+    
     if(!feedback || feedback.length===0){
         return <p>No Feedback Yet</p>
     }
@@ -10,8 +10,7 @@ function Feedbacklist({feedback,handledelete}) {
   return (
     <div className="Feedback-list">
       {feedback.map((item)=>(
-     <FeedbackItem key={item.id} 
-     item={item}
+     <FeedbackItem key={item.id} item={item}
      handleDelete={handledelete}
      />
       ))}

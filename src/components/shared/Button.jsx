@@ -2,9 +2,9 @@ import PropTypes from 'prop-types'
 
 function Button({children,type,isDisabled,version}) {
   return (
-    <Button type={type} disabled={isDisabled} className={`btn btn-${version}`}>
+    <button type={type} disabled={isDisabled} className={`btn btn-${version}`}>
       {children}
-    </Button>
+    </button>
   )
 }
 

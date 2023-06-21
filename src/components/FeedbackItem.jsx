@@ -1,7 +1,10 @@
 import Card from "./shared/Card"
-import PropTypes from 'prop-types'
-import {FaTimes} from 'react-icons/fa'
-function FeedbackItem({item,handleDelete}) {
+import { useContext } from "react"
+import FeedbackContext from "../context/FeedbackContext"
+import {FaTimes,FaEdit} from 'react-icons/fa'
+function FeedbackItem({item}) {
+
+  const{deleteFeedback,editFeedback} = useContext(FeedbackContext)
     // const [rating,setRating] = useState(7)
     // const[text,setText] = useState('The comment i want to show .')
     // const handleclick = () =>{
@@ -15,17 +18,16 @@ function FeedbackItem({item,handleDelete}) {
     return (
     <Card >
         <div className="num-display">{item.rating}</div>
-        <button onClick={()=>(handleDelete(item.id))} className="close">
+        <button onClick={()=>(deleteFeedback(item.id))} className="close">
           <FaTimes color="Purple"/>
+        </button>
+        <button onClick={()=>{editFeedback(item)}}className="edit">
+          <FaEdit color="purple"/>
         </button>
         <div className="text-display">{item.text}</div>
         {/* <button onClick={handleclick}>Click</button> */}
    </Card>
   )
-}
-
-FeedbackItem.propTypes={
-  item:PropTypes.object.isRequired
 }
 
 export default FeedbackItem

@@ -1,37 +1,38 @@
-import {v4 as uuidv4} from 'uuid'
+import {BrowserRouter as Router,Route,Routes} from 'react-router-dom'
 import Header from './components/Header'
-import {useState} from 'react'
-import FeedbackData from './data/feedbackdata'
-import FeedbackItem from './components/FeedbackItem'
 import FeedbackList from './components/FeedbackList'
 import FeedbackStats from './components/FeedbackStats'
 import FeedbackForm from './components/FeedbackForm'
+import AboutPage from './Pages/AboutPage'
+import AboutIcon from './components/AboutIcon'
+import Post from './Pages/Post'
+import { FeedbackProvider } from './context/FeedbackContext'
 
 function App(){
-    const [feedback,setfeedback]=useState(FeedbackData)
-    
-    const addFeedback=(newFeedback)=>{
-      newFeedback.id=uuidv4()
-      setfeedback([newFeedback, ...feedback])
-    }
-
-    const deleteFeedback=(id)=>
-    {if(window.confirm("Are You Sure You Want To Delete ?"))
-    {
-      setfeedback(feedback.filter((item)=>item.id !=id))
-    }}
-
     
     return(
-
-        <>
+        <FeedbackProvider>
+        <Router>
         <Header/>
         <div className='container'>
-          <FeedbackForm handleAdd={addFeedback}/>
-          <FeedbackStats feedback={feedback}/>
-          <FeedbackList feedback={feedback} handledelete ={deleteFeedback}/>
+          <Routes>
+            <Route exact path='/' element={
+               <>
+               <FeedbackForm />
+               <FeedbackStats/>
+               <FeedbackList />
+               </>
+            }>
+             
+            </Route>
+            <Route path='/about' element={<AboutPage/>}></Route>
+            <Route path='/post' element={<Post/>}></Route>
+          </Routes>
+          <AboutIcon/>
+
         </div>
-        </>
+        </Router>
+        </FeedbackProvider>
     )
     }
 export default App
